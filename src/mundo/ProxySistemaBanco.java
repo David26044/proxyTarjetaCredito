@@ -10,7 +10,7 @@ package mundo;
  */
 public class ProxySistemaBanco implements IOperacionSistema {
 
-    SistemaBanco sistema;
+    SistemaBanco sistema = SistemaBanco.getInstance();
     
     @Override
     public TarjetaCredito procesarSolicitud(int puntajeDataCredito) {
