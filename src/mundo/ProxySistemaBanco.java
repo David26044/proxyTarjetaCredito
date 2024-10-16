@@ -10,7 +10,7 @@ package mundo;
  */
 public class ProxySistemaBanco implements IOperacionSistema {
 
-    SistemaBanco sistema = SistemaBanco.getInstance();
+    SistemaBanco sistema;
     
     @Override
     public TarjetaCredito procesarSolicitud(int puntajeDataCredito) {
@@ -18,6 +18,9 @@ public class ProxySistemaBanco implements IOperacionSistema {
         if (puntajeDataCredito < 700) { //Se ahorra el tener que ir al sistema para procesar todo, ahora solo ira al sistema si la persona cumple el requisito
             System.out.println("            Proxy: Puntaje insuficiente, solicitud rechazada");
             return null;
+        }
+        if (sistema == null) {
+            sistema = SistemaBanco.getInstance(); // Aquí se inicializa
         }
         return sistema.procesarSolicitud(puntajeDataCredito);
     }
